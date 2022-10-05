@@ -10,11 +10,15 @@ function App() {
       <td>Picture</td>
       <td>Name</td>
       <td>Popularity</td>
+      <td>Won Oscar</td>
+      <td>Won Emmy</td>
     </tr>
-    <tr class="singleColumns" v-for="contact in contacts.slice(0, 5)" :key="contact.id">
+    <tr class="singleColumns" v-for="contact in contacts.slice(0, 9)" :key="contact.id">
       <td><img class="pictures" :src="contact.pictureUrl" alt=""></td>
       <td>{{ contact.name }}</td>
-      <td>{{ contact.popularity }}</td>
+      <td>{{ contact.popularity.toFixed(2) }}</td>
+      <td><span v-if="contact.wonOscar">🏆</span></td>
+      <td><span v-if="contact.wonEmmy">🏆</span></td>
     </tr>
    </table>
   </div>
@@ -38,6 +42,9 @@ function App() {
             popularity: element.popularity,
           };
         });
+        this.contacts.sort((a, b) => a.popularity - b.popularity);
+
+        
       },
     },
   }
