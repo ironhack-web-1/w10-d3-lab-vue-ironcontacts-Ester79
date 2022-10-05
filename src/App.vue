@@ -5,6 +5,7 @@ function App() {
   <template>
   <div class="mainContainer">
     <h1 class="titleTable">IronContacts</h1>
+    <button @click="randomContact">Add Random Contact</button>
    <table class="tble">
     <tr class="headerTable">
       <td>Picture</td>
@@ -37,16 +38,22 @@ function App() {
       getListContacts() {
         return this.contacts.map((element) => {
           return {
-            name: element.name,
-            picture: element.pictureUrl,
-            popularity: element.popularity,
+            contact: element,
+          
           };
         });
-        this.contacts.sort((a, b) => a.popularity - b.popularity);
-
-        
       },
     },
+    methods: {
+      randomContact() {
+        if(this.contacts.length > 0) {
+          const contactsRandom = Math.floor(Math.random() * this.contacts.length);
+          const arrayRandom = this.contacts[contactsRandom];
+          return arrayRandom;
+        }
+
+      }
+      }
   }
 </script>
 <style>
